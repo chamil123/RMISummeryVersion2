@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="generalSub" language="groovy" pageWidth="572" pageHeight="752" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="date_eka" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     *
+FROM summery_line INNER JOIN summery ON summery_line.center_id=summery.center_id WHERE
+summery_line.center_id=99 AND summery.summery_date=summery_line.summery_line_date AND
+summery_line.summery_line_date=$P{date_eka} GROUP BY summery_line.summery_line_id;]]>
+	</queryString>
+	<field name="summery_line_id" class="java.lang.Integer"/>
+	<field name="summery_line_chitNumber" class="java.lang.String"/>
+	<field name="summery_line_investment" class="java.lang.Double"/>
+	<field name="summery_line_payment" class="java.lang.Double"/>
+	<field name="summery_line_date" class="java.sql.Date"/>
+	<field name="center_id" class="java.lang.Integer"/>
+	<field name="summery_id" class="java.lang.Integer"/>
+	<field name="summery_date" class="java.sql.Date"/>
+	<field name="summery_name" class="java.lang.String"/>
+	<field name="summery_fc" class="java.lang.Double"/>
+	<field name="summery_cash" class="java.lang.Double"/>
+	<field name="summery_pd" class="java.lang.Double"/>
+	<field name="summery_noComAmount" class="java.lang.Double"/>
+	<field name="summery_lessComAmount" class="java.lang.Double"/>
+	<field name="summery_lcnc" class="java.lang.Double"/>
+	<field name="summery_paperCash" class="java.lang.Double"/>
+	<field name="summery_compay" class="java.lang.Double"/>
+	<field name="summery_expenses" class="java.lang.Double"/>
+	<field name="summery_slippaytot" class="java.lang.Double"/>
+	<field name="summery_loan" class="java.lang.Double"/>
+	<field name="summery_excess" class="java.lang.Double"/>
+	<field name="summery_salary" class="java.lang.Double"/>
+	<field name="summery_payment" class="java.lang.Double"/>
+	<field name="summery_due" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="1" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="26" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="33" y="2" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[summery_line_chitNumber]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="184" y="2" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[summery_line_investment]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="336" y="2" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[summery_line_payment]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="48" splitType="Stretch">
+			<textField>
+				<reportElement x="33" y="17" width="151" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{summery_line_chitNumber}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="184" y="17" width="152" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{summery_line_investment}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="336" y="17" width="146" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{summery_line_payment}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="20" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="18" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

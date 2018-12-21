@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ragama" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="151"/>
+	<parameter name="date" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\pegasusReports\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT * FROM summery INNER JOIN center ON summery.center_id=center.center_id WHERE center.center_accountType='General' AND center.account_id=2 AND summery_date=$P{date} GROUP BY summery.summery_id;]]>
+	</queryString>
+	<field name="summery_id" class="java.lang.Integer"/>
+	<field name="summery_date" class="java.sql.Date"/>
+	<field name="summery_name" class="java.lang.String"/>
+	<field name="summery_fc" class="java.lang.Double"/>
+	<field name="summery_cash" class="java.lang.Double"/>
+	<field name="summery_pd" class="java.lang.Double"/>
+	<field name="summery_noComAmount" class="java.lang.Double"/>
+	<field name="summery_lessComAmount" class="java.lang.Double"/>
+	<field name="summery_lcnc" class="java.lang.Double"/>
+	<field name="summery_paperCash" class="java.lang.Double"/>
+	<field name="summery_compay" class="java.lang.Double"/>
+	<field name="summery_expenses" class="java.lang.Double"/>
+	<field name="summery_slippaytot" class="java.lang.Double"/>
+	<field name="summery_loan" class="java.lang.Double"/>
+	<field name="summery_excess" class="java.lang.Double"/>
+	<field name="summery_salary" class="java.lang.Double"/>
+	<field name="summery_payment" class="java.lang.Double"/>
+	<field name="summery_due" class="java.lang.Double"/>
+	<field name="center_id" class="java.lang.Integer"/>
+	<field name="center_name" class="java.lang.String"/>
+	<field name="center_com" class="java.lang.Integer"/>
+	<field name="center_paperCash" class="java.lang.Double"/>
+	<field name="center_loan" class="java.lang.Double"/>
+	<field name="center_noCom" class="java.lang.Integer"/>
+	<field name="center_lessCom" class="java.lang.Integer"/>
+	<field name="center_exp" class="java.lang.Double"/>
+	<field name="center_accountType" class="java.lang.String"/>
+	<field name="center_status" class="java.lang.String"/>
+	<field name="account_id" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement x="264" y="15" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{summery_date}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="340" y="2" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[summery_name]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="166" splitType="Stretch">
+			<textField>
+				<reportElement x="264" y="12" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{summery_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="147" y="12" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Summery name : ]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="38" y="32" width="477" height="114"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="date">
+					<subreportParameterExpression><![CDATA[$P{date}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "generalSub.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
